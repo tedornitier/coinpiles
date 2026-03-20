@@ -32,12 +32,16 @@ def _spiral_positions(num_points: int, spacing: float = 5.0) -> list[tuple[float
     return points
 
 
-def _load_sprites() -> tuple[Image.Image, Image.Image, Image.Image, Image.Image]:
+def _load_sprites(config: RenderConfig) -> tuple[Image.Image, Image.Image, Image.Image, Image.Image]:
     assets = Path(__file__).resolve().parent / "assets"
-    top = Image.open(assets / "top.png").convert("RGBA")
-    layer_even = Image.open(assets / "layer_even.png").convert("RGBA")
-    layer_odd = Image.open(assets / "layer_odd.png").convert("RGBA")
-    bottom = Image.open(assets / "bottom.png").convert("RGBA")
+    top_src = Path(config.top_path) if config.top_path else (assets / "top.png")
+    layer_even_src = Path(config.layer_even_path) if config.layer_even_path else (assets / "layer_even.png")
+    layer_odd_src = Path(config.layer_odd_path) if config.layer_odd_path else (assets / "layer_odd.png")
+    bottom_src = Path(config.bottom_path) if config.bottom_path else (assets / "bottom.png")
+    top = Image.open(top_src).convert("RGBA")
+    layer_even = Image.open(layer_even_src).convert("RGBA")
+    layer_odd = Image.open(layer_odd_src).convert("RGBA")
+    bottom = Image.open(bottom_src).convert("RGBA")
     return top, layer_even, layer_odd, bottom
 
 
@@ -119,7 +123,7 @@ def _draw_coin_pile(
 def render_coinpile(config: RenderConfig) -> Image.Image:
     coin_count = config.resolved_coin_count()
     rng = random.Random(config.random_seed)
-    top, layer_even, layer_odd, bottom = _load_sprites()
+    top, layer_even, layer_odd, bottom = _load_sprites(config)
 
     canvas = Image.new("RGBA", (config.width, config.height), (0, 0, 0, 0))
 

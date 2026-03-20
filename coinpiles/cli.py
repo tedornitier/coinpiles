@@ -22,6 +22,12 @@ def main() -> None:
     generate.add_argument(
         "--height-weight-multiplier", type=float, default=-1.0, help="Bias multiplier for current pile height"
     )
+    generate.add_argument(
+        "--top-path", default=None, help="Path to top sprite"
+    )
+    generate.add_argument("--layer-even-path", default=None, help="Path to even layer sprite")
+    generate.add_argument("--layer-odd-path", default=None, help="Path to odd layer sprite")
+    generate.add_argument("--bottom-path", default=None, help="Path to bottom sprite")
     generate.add_argument("--output", required=True, help="Output PNG path")
 
     args = parser.parse_args()
@@ -36,6 +42,10 @@ def main() -> None:
             new_pile_probability=args.new_pile_probability,
             position_weight_multiplier=args.position_weight_multiplier,
             height_weight_multiplier=args.height_weight_multiplier,
+            top_path=args.top_path,
+            layer_even_path=args.layer_even_path,
+            layer_odd_path=args.layer_odd_path,
+            bottom_path=args.bottom_path,
         )
         print(f"Generated: {out}")
 

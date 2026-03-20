@@ -17,6 +17,10 @@ def generate_image(
     new_pile_probability: float = 0.1,
     position_weight_multiplier: float = 2.0,
     height_weight_multiplier: float = -1.0,
+    top_path: str | Path | None = None,
+    layer_even_path: str | Path | None = None,
+    layer_odd_path: str | Path | None = None,
+    bottom_path: str | Path | None = None,
 ) -> Image.Image:
     config = RenderConfig(
         coins=coins,
@@ -27,6 +31,10 @@ def generate_image(
         new_pile_probability=new_pile_probability,
         position_weight_multiplier=position_weight_multiplier,
         height_weight_multiplier=height_weight_multiplier,
+        top_path=top_path,
+        layer_even_path=layer_even_path,
+        layer_odd_path=layer_odd_path,
+        bottom_path=bottom_path,
     )
     return render_coinpile(config)
 
@@ -42,6 +50,10 @@ def save_png(
     new_pile_probability: float = 0.1,
     position_weight_multiplier: float = 2.0,
     height_weight_multiplier: float = -1.0,
+    top_path: str | Path | None = None,
+    layer_even_path: str | Path | None = None,
+    layer_odd_path: str | Path | None = None,
+    bottom_path: str | Path | None = None,
 ) -> Path:
     image = generate_image(
         coins=coins,
@@ -52,6 +64,10 @@ def save_png(
         new_pile_probability=new_pile_probability,
         position_weight_multiplier=position_weight_multiplier,
         height_weight_multiplier=height_weight_multiplier,
+        top_path=top_path,
+        layer_even_path=layer_even_path,
+        layer_odd_path=layer_odd_path,
+        bottom_path=bottom_path,
     )
     out = Path(output_path)
     out.parent.mkdir(parents=True, exist_ok=True)

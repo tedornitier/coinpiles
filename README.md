@@ -41,6 +41,31 @@ save_png("out.png", coins=80)
 coinpiles generate --coins 80 --pile-spacing 4.8 --random-seed 42 --output out.png
 ```
 
+## Custom sprite images
+
+You can provide your own sprite files by path (`top`, `layer_even`, `layer_odd`, `bottom`).
+
+Python API:
+
+```python
+from coinpiles import save_png
+
+save_png(
+    "out_custom.png",
+    coins=80,
+    top_path="my_assets/top.png",
+    layer_even_path="my_assets/layer_even.png",
+    layer_odd_path="my_assets/layer_odd.png",
+    bottom_path="my_assets/bottom.png",
+)
+```
+
+CLI:
+
+```bash
+coinpiles generate --coins 80 --top-path "my_assets/top.png" --layer-even-path "my_assets/layer_even.png" --layer-odd-path "my_assets/layer_odd.png" --bottom-path "my_assets/bottom.png" --output out_custom_paths.png
+```
+
 ## Example output
 
 ![coinpiles example](example.png)
