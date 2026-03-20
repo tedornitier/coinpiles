@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "coinpiles"
+version = "0.1.0"
+description = "Generate coin pile PNG images from generic values."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "coinpiles contributors" }]
+dependencies = ["Pillow>=10.0.0"]
+
+[project.scripts]
+coinpiles = "coinpiles.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["coinpiles*"]
+
+[tool.setuptools.package-data]
+coinpiles = ["assets/*.png"]

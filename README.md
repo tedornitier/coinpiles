@@ -1,0 +1,60 @@
+# coinpiles
+
+Generate a gold coin pile image from a number.
+
+## Quick start
+
+```bash
+pip install coinpiles
+coinpiles generate --coins 145 --output out.png
+```
+
+## Python API
+
+```python
+from coinpiles import generate_image, save_png
+
+img = generate_image(coins=145)
+img.save("out.png")
+
+img2 = generate_image(coins=80, random_seed=42, pile_spacing=5.0)
+
+save_png("out.png", coins=80)
+```
+
+`generate_image(...)` accepts:
+
+| argument | default | description |
+|---|---|---|
+| `coins` | required | number of coins to render |
+| `width` | `512` | canvas width in pixels before crop |
+| `height` | `512` | canvas height in pixels before crop |
+| `random_seed` | `42` | seed for deterministic layout |
+| `pile_spacing` | `5.0` | distance between pile anchor points; lower = denser |
+| `new_pile_probability` | `0.1` | chance of starting a new pile at each growth step |
+| `position_weight_multiplier` | `2.0` | bias toward placing coins in higher pile positions |
+| `height_weight_multiplier` | `-1.0` | bias against already tall piles to spread growth |
+
+## CLI usage
+
+```bash
+coinpiles generate --coins 80 --pile-spacing 4.8 --random-seed 42 --output out.png
+```
+
+## Example output
+
+![coinpiles example](example.png)
+
+## Determinism
+
+Rendering is deterministic by default. `coinpiles` uses a fixed RNG seed, so the same input produces the same image output.
+
+## Scope
+
+Rendering is the only concern — how you get the coin count is up to you.
+
+Hardware-specific output (for example Raspberry Pi e-paper display) should live in a separate adapter project.
+
+## Assets
+
+Coin sprites in `coinpiles/coinpiles/assets/` are original artwork created by the project author and are licensed under the same MIT license as this project.
