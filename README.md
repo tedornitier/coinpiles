@@ -74,12 +74,6 @@ coinpiles generate --coins 80 --top-path "my_assets/top.png" --layer-even-path "
 
 Rendering is deterministic by default. `coinpiles` uses a fixed RNG seed, so the same input produces the same image output.
 
-## Scope
-
-Rendering is the only concern — how you get the coin count is up to you.
-
-Hardware-specific output (for example Raspberry Pi e-paper display) should live in a separate adapter project.
-
 ## Assets
 
 Coin sprites in `coinpiles/coinpiles/assets/` are original artwork created by the project author and are licensed under the same MIT license as this project.
